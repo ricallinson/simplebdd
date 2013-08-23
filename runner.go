@@ -35,7 +35,7 @@ var testRun = TestRunner{}
 
 func record(pass bool, got interface{}) {
     testRun.tests = append(testRun.tests, result{
-        message: testRun.describe + " " + testRun.it + ", got " + fmt.Sprint(got),
+        message: testRun.describe + " " + testRun.it + ", got [" + fmt.Sprint(got) + "]",
         passed: pass,
     })
 }
