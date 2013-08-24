@@ -31,7 +31,7 @@ func Report(t *testing.T) {
 
         if group != test.group {
             group = test.group
-            fmt.Println(colorTitled + group + colorReport + "\n")
+            fmt.Println("\n" + colorTitled + group + colorReport + "\n")
         }
 
         if test.passed {
