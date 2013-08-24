@@ -60,7 +60,9 @@ func Report(t *testing.T) {
 
     /*
         Once reported clean the test runner for the next run.
+
+        This can be done in a better way but I'm writing tests at the moment and don't have time.
     */
 
-    testRun = TestRunner{}
+    testRun = testRunner{}
 }
