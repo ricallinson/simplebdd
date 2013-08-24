@@ -1,3 +1,27 @@
+/*
+    Super simple behavior-driven development style test writer for Go
+
+        package something
+
+        import(
+            "testing"
+            . "github.com/ricallinson/simplebdd"
+        )
+
+        func TestSomething(t *testing.T) {
+            Describe("AssertEqual()", func() {
+                It("should return that true is true", func() {
+                    AssertEqual(true, true)
+                })
+            })
+            Describe("AssertNotEqual()", func() {
+                It("should return that false is not true", func() {
+                    AssertNotEqual(false, true)
+                })
+            })
+            Report(t)
+        }
+*/
 package simplebdd
 
 import(
@@ -30,7 +54,7 @@ type testRunner struct {
 }
 
 /*
-    Holds all tests run.
+    Holds all the tests run.
 */
 
 var testRun = testRunner{}
@@ -49,17 +73,15 @@ func record(pass bool, got interface{}) {
 }
 
 /*
-    Function to call before each It().
+    Called before each Describe() function call.
 */
-
 func Before(fn func()) {
     testRun.before = fn
 }
 
 /*
-    Grouping function for describing a function.
+    Naming function for describing the group of It() functions contained in the function argument.
 */
-
 func Describe(title string, fn func()) {
     testRun.describe = title
     if testRun.before != nil {
@@ -72,25 +94,22 @@ func Describe(title string, fn func()) {
 }
 
 /*
-    Function to call after each It().
+    Called after each Describe() function call.
 */
-
 func After(fn func()) {
     testRun.after = fn
 }
 
 /*
-    Function to call before each It().
+    Called before each It() function call.
 */
-
 func BeforeEach(fn func()) {
     testRun.beforeEach = fn
 }
 
 /*
-    Naming function for describing calling a function.
+    Naming function for describing what should be return by the function argument.
 */
-
 func It(title string, fn func()) {
     testRun.it = title
     if testRun.beforeEach != nil {
@@ -103,9 +122,8 @@ func It(title string, fn func()) {
 }
 
 /*
-    Function to call after each It().
+    Called after each It() function call.
 */
-
 func AfterEach(fn func()) {
     testRun.afterEach = fn
 }

@@ -1,9 +1,8 @@
 package simplebdd
 
 /*
-    Asserts that "a" and "b" are the same.
+    Asserts that "a" and "b" are the same and stores the result for later use by the Report function.
 */
-
 func AssertEqual(a interface{}, b interface{}) {
 
     test := false
@@ -47,9 +46,8 @@ func AssertEqual(a interface{}, b interface{}) {
 }
 
 /*
-    Asserts that "a" and "b" are different.
+    Asserts that "a" and "b" are different and stores the result for later use by the Report function.
 */
-
 func AssertNotEqual(a interface{}, b interface{}) {
 
     test := false

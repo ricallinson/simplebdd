@@ -6,9 +6,8 @@ import(
 )
 
 /*
-    Really simple report.
+    Prints to stdout a list of the tests and if they passed or failed.
 */
-
 func Report(t *testing.T) {
 
     ok := "✓"
