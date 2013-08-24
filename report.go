@@ -18,22 +18,31 @@ func Report(t *testing.T) {
     passed := 0
 
     colorNormal := "\x1b[0m"
+    colorTitled := "\x1b[37m"
     colorReport := "\x1b[90m"
     colorPassed := "\x1b[92m"
     colorFailed := "\x1b[31m"
 
     fmt.Println("\x1b[90m")
 
+    group := ""
+
     for _, test := range testRun.tests {
+
+        if group != test.group {
+            group = test.group
+            fmt.Println(colorTitled + group + colorReport + "\n")
+        }
+
         if test.passed {
-            fmt.Println(colorPassed + ok + colorReport + " " + test.message)
+            fmt.Println("\t" + colorPassed + ok + colorReport + " " + test.message)
             passed++
         } else {
             t.Fail()
             msg := colorFailed
-            msg += err + " " + test.message
+            msg += err + " " + test.message + ", got [" + test.result + "]"
             msg += colorReport
-            fmt.Println(msg)
+            fmt.Println("\t" + msg)
             failed++
         }
     }

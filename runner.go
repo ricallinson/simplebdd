@@ -9,7 +9,9 @@ import(
 */
 
 type result struct {
+    group string
     message string
+    result string
     passed bool
 }
 
@@ -35,7 +37,9 @@ var testRun = TestRunner{}
 
 func record(pass bool, got interface{}) {
     testRun.tests = append(testRun.tests, result{
-        message: testRun.describe + " " + testRun.it + ", got [" + fmt.Sprint(got) + "]",
+        group: testRun.describe,
+        message: testRun.it,
+        result: fmt.Sprint(got),
         passed: pass,
     })
 }
