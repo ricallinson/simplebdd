@@ -34,7 +34,7 @@ func Report(t *testing.T) {
         }
 
         if test.passed {
-            fmt.Println("\t" + colorPassed + ok + colorReport + " " + test.message)
+            fmt.Println("\t" + colorPassed + ok + colorReport + " " + test.message)// + " [" +test.result + "]")
             passed++
         } else {
             t.Fail()
