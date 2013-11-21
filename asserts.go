@@ -42,7 +42,7 @@ func AssertEqual(a interface{}, b interface{}) {
         test = a.(complex128) == b.(complex128)
     }
 
-    record(test, a)
+    record(test, a, b)
 }
 
 /*
@@ -87,5 +87,5 @@ func AssertNotEqual(a interface{}, b interface{}) {
         test = a.(complex128) != b.(complex128)
     }
 
-    record(test, a)
+    record(test, a, b)
 }

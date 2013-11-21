@@ -39,7 +39,7 @@ func Report(t *testing.T) {
         } else {
             t.Fail()
             msg := colorFailed
-            msg += err + " " + test.message + ", got [" + test.result + "]"
+            msg += err + " " + test.message + ", expected [" + test.expect + "], got [" +test.result + "]"
             msg += colorReport
             fmt.Println("\t" + msg)
             failed++

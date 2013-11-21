@@ -35,6 +35,7 @@ import(
 type result struct {
     group string
     message string
+    expect string
     result string
     passed bool
 }
@@ -63,10 +64,11 @@ var testRun = testRunner{}
     Store the result of an Assert call.
 */
 
-func record(pass bool, got interface{}) {
+func record(pass bool, got interface{}, expected interface{}) {
     testRun.tests = append(testRun.tests, result{
         group: testRun.describe,
         message: testRun.it,
+        expect: fmt.Sprint(expected),
         result: fmt.Sprint(got),
         passed: pass,
     })
