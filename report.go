@@ -63,6 +63,8 @@ func Report(t *testing.T) {
 
     fmt.Println(colorNormal)
 
+    Xunit(t)
+
     // Once reported clean the test runner for the next run.
     testRun = testRunner{}
 }
