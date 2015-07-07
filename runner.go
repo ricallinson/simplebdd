@@ -38,6 +38,7 @@ type result struct {
     expect string
     result string
     passed bool
+    skipped bool
 }
 
 /*
@@ -71,6 +72,14 @@ func record(pass bool, got interface{}, expected interface{}) {
         expect: fmt.Sprint(expected),
         result: fmt.Sprint(got),
         passed: pass,
+    })
+}
+
+func skip() {
+    testRun.tests = append(testRun.tests, result{
+        group: testRun.describe,
+        message: testRun.it,
+        skipped: true,
     })
 }
 
@@ -121,6 +130,11 @@ func It(title string, fn func()) {
     if testRun.afterEach != nil {
         testRun.afterEach()
     }
+}
+
+func Skip(title string, fn func()) {
+    testRun.it = title
+    skip()
 }
 
 /*
