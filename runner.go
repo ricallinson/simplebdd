@@ -1,145 +1,145 @@
 /*
-    Super simple behavior-driven development style test writer for Go
+   Super simple behavior-driven development style test writer for Go
 
-        package something
+       package something
 
-        import(
-            "testing"
-            . "github.com/ricallinson/simplebdd"
-        )
+       import(
+           "testing"
+           . "github.com/ricallinson/simplebdd"
+       )
 
-        func TestSomething(t *testing.T) {
-            Describe("AssertEqual()", func() {
-                It("should return that true is true", func() {
-                    AssertEqual(true, true)
-                })
-            })
-            Describe("AssertNotEqual()", func() {
-                It("should return that false is not true", func() {
-                    AssertNotEqual(false, true)
-                })
-            })
-            Report(t)
-        }
+       func TestSomething(t *testing.T) {
+           Describe("AssertEqual()", func() {
+               It("should return that true is true", func() {
+                   AssertEqual(true, true)
+               })
+           })
+           Describe("AssertNotEqual()", func() {
+               It("should return that false is not true", func() {
+                   AssertNotEqual(false, true)
+               })
+           })
+           Report(t)
+       }
 */
 package simplebdd
 
-import(
-    "fmt"
+import (
+	"fmt"
 )
 
 /*
-    result type
+   result type
 */
 
 type result struct {
-    group string
-    message string
-    expect string
-    result string
-    passed bool
-    skipped bool
+	group   string
+	message string
+	expect  string
+	result  string
+	passed  bool
+	skipped bool
 }
 
 /*
-    testRunner type.
+   testRunner type.
 */
 
 type testRunner struct {
-    describe string
-    before func()
-    beforeEach func()
-    it string
-    after func()
-    afterEach func()
-    tests []result
+	describe   string
+	before     func()
+	beforeEach func()
+	it         string
+	after      func()
+	afterEach  func()
+	tests      []result
 }
 
 /*
-    Holds all the tests run.
+   Holds all the tests run.
 */
 
 var testRun = testRunner{}
 
 /*
-    Store the result of an Assert call.
+   Store the result of an Assert call.
 */
 
 func record(pass bool, got interface{}, expected interface{}) {
-    testRun.tests = append(testRun.tests, result{
-        group: testRun.describe,
-        message: testRun.it,
-        expect: fmt.Sprint(expected),
-        result: fmt.Sprint(got),
-        passed: pass,
-    })
+	testRun.tests = append(testRun.tests, result{
+		group:   testRun.describe,
+		message: testRun.it,
+		expect:  fmt.Sprint(expected),
+		result:  fmt.Sprint(got),
+		passed:  pass,
+	})
 }
 
 func skip() {
-    testRun.tests = append(testRun.tests, result{
-        group: testRun.describe,
-        message: testRun.it,
-        skipped: true,
-    })
+	testRun.tests = append(testRun.tests, result{
+		group:   testRun.describe,
+		message: testRun.it,
+		skipped: true,
+	})
 }
 
 /*
-    Called before each Describe() function call.
+   Called before each Describe() function call.
 */
 func Before(fn func()) {
-    testRun.before = fn
+	testRun.before = fn
 }
 
 /*
-    Naming function for describing the group of It() functions contained in the function argument.
+   Naming function for describing the group of It() functions contained in the function argument.
 */
 func Describe(title string, fn func()) {
-    testRun.describe = title
-    if testRun.before != nil {
-        testRun.before()
-    }
-    fn()
-    if testRun.after != nil {
-        testRun.after()
-    }
+	testRun.describe = title
+	if testRun.before != nil {
+		testRun.before()
+	}
+	fn()
+	if testRun.after != nil {
+		testRun.after()
+	}
 }
 
 /*
-    Called after each Describe() function call.
+   Called after each Describe() function call.
 */
 func After(fn func()) {
-    testRun.after = fn
+	testRun.after = fn
 }
 
 /*
-    Called before each It() function call.
+   Called before each It() function call.
 */
 func BeforeEach(fn func()) {
-    testRun.beforeEach = fn
+	testRun.beforeEach = fn
 }
 
 /*
-    Naming function for describing what should be return by the function argument.
+   Naming function for describing what should be return by the function argument.
 */
 func It(title string, fn func()) {
-    testRun.it = title
-    if testRun.beforeEach != nil {
-        testRun.beforeEach()
-    }
-    fn()
-    if testRun.afterEach != nil {
-        testRun.afterEach()
-    }
+	testRun.it = title
+	if testRun.beforeEach != nil {
+		testRun.beforeEach()
+	}
+	fn()
+	if testRun.afterEach != nil {
+		testRun.afterEach()
+	}
 }
 
 func Skip(title string, fn func()) {
-    testRun.it = title
-    skip()
+	testRun.it = title
+	skip()
 }
 
 /*
-    Called after each It() function call.
+   Called after each It() function call.
 */
 func AfterEach(fn func()) {
-    testRun.afterEach = fn
+	testRun.afterEach = fn
 }
