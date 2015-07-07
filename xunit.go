@@ -17,7 +17,7 @@ func Xunit(t *testing.T) {
 
     for _, test := range testRun.tests {
 
-        if group == "" {
+        if group != test.group {
             group = test.group
         }
 
