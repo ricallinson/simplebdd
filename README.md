@@ -25,3 +25,11 @@ Super simple behavior-driven development style test writer for Go.
         })
         Report(t)
     }
+
+# Test
+
+    go test -cover
+
+# Coverage
+    
+    
