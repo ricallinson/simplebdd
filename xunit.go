@@ -3,18 +3,18 @@ package simplebdd
 import (
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strings"
 	"testing"
-	"os"
 )
 
 var TEST_DIR = "test-results"
 var FILE_MASK os.FileMode = 0777
 
 type testResult struct {
-	name string
+	name      string
 	classname string
-	time float32
+	time      float32
 }
 
 func writeXunitFile(name string, time float32, tests []testResult, errors int, skipped int, failures int) {
