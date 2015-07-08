@@ -24,7 +24,7 @@ func writeXunitFile(name string, time float32, tests []testResult, errors int, s
 		xml += fmt.Sprintf("\t<testcase name=\"%s\" classname=\"%s\" time=\"%f\"/>\n", test.name, test.classname, test.time)
 	}
 	xml += "</testsuite>\n"
-	ioutil.WriteFile("./"+TEST_DIR+"/xunit_"+strings.Replace(name, " ", "_", -1)+".xml", []byte(xml), FILE_MASK)
+	ioutil.WriteFile("./"+TEST_DIR+"/"+strings.Replace(name, " ", "_", -1)+".xml", []byte(xml), FILE_MASK)
 }
 
 func Xunit(t *testing.T) {
