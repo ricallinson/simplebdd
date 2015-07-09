@@ -23,7 +23,7 @@ func TestRunnerBefore(t *testing.T) {
 
 	test := false
 
-	Before(func () {
+	Before(func() {
 		test = true
 	})
 
@@ -47,7 +47,7 @@ func TestRunnerAfter(t *testing.T) {
 
 	test := false
 
-	After(func () {
+	After(func() {
 		test = false
 	})
 
@@ -73,7 +73,7 @@ func TestRunnerBeforeEach(t *testing.T) {
 
 		test := false
 
-		BeforeEach(func () {
+		BeforeEach(func() {
 			test = true
 		})
 
@@ -96,7 +96,7 @@ func TestRunnerAfterEach(t *testing.T) {
 
 		test := true
 
-		AfterEach(func () {
+		AfterEach(func() {
 			test = false
 		})
 
