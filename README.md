@@ -26,10 +26,10 @@ Super simple behavior-driven development style test writer for Go.
         Report(t)
     }
 
-# Test
+## Testing
 
     go test -cover
 
-# Coverage
+## Coverage
     
     go test -coverprofile=coverage.out; go tool cover -html=coverage.out -o=index.html
