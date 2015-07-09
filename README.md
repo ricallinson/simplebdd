@@ -26,6 +26,20 @@ Super simple behavior-driven development style test writer for Go.
         Report(t)
     }
 
+## Xunit Reporting
+
+If you want to output Junit style reports, call `Xunit()` just prior to `Report()` passing the given `testing.T` variable. This will create a folder named _test-results_ that contains __xml__ files for each executed `Describe` block.
+
+    func TestSomething(t *testing.T) {
+        Describe("AssertEqual()", func() {
+            It("should return that true is true", func() {
+                AssertEqual(true, true)
+            })
+        })
+        Xunit(t)
+        Report(t)
+    }
+
 ## Testing
 
     go test -cover
