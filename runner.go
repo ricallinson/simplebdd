@@ -65,7 +65,7 @@ var testRun = testRunner{}
    Store the result of an Assert call.
 */
 
-func record(pass bool, got interface{}, expected interface{}) {
+func record(pass bool, expected interface{}, got interface{}) {
 	testRun.tests = append(testRun.tests, result{
 		group:   testRun.describe,
 		message: testRun.it,
