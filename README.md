@@ -1,6 +1,6 @@
 # No longer supported.
 
-I recomend using github.com/stretchr/testify
+I recomend using [github.com/stretchr/testify](https://github.com/stretchr/testify)
 
 # SimpleBDD Test Runner
 
