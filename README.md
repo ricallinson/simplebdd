@@ -1,3 +1,7 @@
+# No longer supported.
+
+I recomend using github.com/stretchr/testify
+
 # SimpleBDD Test Runner
 
 [![Build Status](https://travis-ci.org/ricallinson/simplebdd.svg?branch=master)](https://travis-ci.org/ricallinson/simplebdd)
